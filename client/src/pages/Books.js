@@ -1,22 +1,39 @@
 import React, { useState, useEffect, useRef } from "react";
-import Jumbotron from "../components/Jumbotron";
 import DeleteBtn from "../components/DeleteBtn";
-import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
-
 import API from "../utils/API"
 
 function Books() {
   // Initialize books as an empty array
     const [books, setBooks] = useState([]);
-    const titleRef = useRef();
-    const authorRef = useRef();
-    const synopsisRef =useRef();
+    const [search, setSearch] = useState([]);
+    const [results , setResults] = useState([]);
+    const [error , setError] = useState([]);
+    const searchTitle = useRef();
     
     useEffect(() => {
       loadBooks();
     }, []);
+
+   const handleInputChange = event => {
+     const { value } = event.target;
+     setSearch(value);
+    };
+
+    const handleFormSubmit = event => {
+      event.preventDefault();
+      API.getBooks(search)
+        .then(res => {
+          if (res.data.status === "error") {
+            throw new Error(res.data);
+          }
+          console.log(res);
+         setResults(res.data);
+         setBooks(res.data);
+        })
+        .catch(err => setError({ error: err.message }));
+    };
 
     function loadBooks() {
       // Add code here to get all books from the database and store them using setBooks
@@ -39,9 +56,9 @@ function Books() {
     function saveBook() {
       // Add code here to get all books from the database and store them using setBooks
     const bookData = {
-         title : titleRef.current.value,
-         author : authorRef.current.value,
-         synopsis : synopsisRef.current.value
+        //  title : titleRef.current.value,
+        //  author : authorRef.current.value,
+        //  synopsis : synopsisRef.current.value
     }
       API.saveBook(bookData).then((response) => {
         setBooks(response.data);
@@ -51,23 +68,13 @@ function Books() {
     }
 
     return (
-      <Container fluid>
-        <Row>
-          <Col size="md-6">
-            <Jumbotron>
-              <h1>What Books Should I Read?</h1>
-            </Jumbotron>
-            <form>
-              <Input name="title" placeholder="Title (required)" inputarea= {titleRef}/>
-              <Input name="author" placeholder="Author (required)" inputarea= {authorRef}/>
-              <TextArea name="synopsis" placeholder="Synopsis (Optional)" textarea={synopsisRef}/>
-              <FormBtn onClick={() => saveBook()}>Submit Book </FormBtn>
+      <div>
+       
+             <form>
+              <Input name="title" placeholder="Book Name (required)" value={search} inputarea= {searchTitle}  onChange={handleInputChange}/>
+              <FormBtn onClick={handleFormSubmit} />
             </form >
-          </Col>
-          <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>Books On My List</h1>
-            </Jumbotron>
+          
             {books.length ? (
               <List>
                 {books.map(book => (
@@ -84,9 +91,7 @@ function Books() {
             ) : (
               <h3>No Results to Display</h3>
             )}
-          </Col>
-        </Row>
-      </Container>
+      </div>
     );
   }
 
