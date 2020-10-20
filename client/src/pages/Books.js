@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import DeleteBtn from "../components/DeleteBtn";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
-import API from "../utils/API"
+import API from "../utils/API";
+
 
 function Books() {
   // Initialize books as an empty array
@@ -23,6 +24,7 @@ function Books() {
 
     const handleFormSubmit = event => {
       event.preventDefault();
+      console.log("Search" +search);
       API.getBooks(search)
         .then(res => {
           if (res.data.status === "error") {
@@ -69,8 +71,7 @@ function Books() {
 
     return (
       <div>
-       
-             <form>
+            <form>
               <Input name="title" placeholder="Book Name (required)" value={search} inputarea= {searchTitle}  onChange={handleInputChange}/>
               <FormBtn onClick={handleFormSubmit} />
             </form >

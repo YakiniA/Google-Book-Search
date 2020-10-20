@@ -1,0 +1,68 @@
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+/* body {
+  background-image: url(./BookBg.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  /* color: black; */
+/*} */
+
+h1 {
+  text-align: center;
+  font-size: 40px;
+  color: white;
+  font-weight: bold;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* table {
+  background-color: rgba(143, 143, 143, 0.863);
+  margin-top: 20px;
+  color: white;
+} */
+
+.wrapper {
+  min-height: 100%;
+  padding-bottom: 100px;
+}
+
+h4 {
+  margin-bottom: 40px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
+
+#search {
+  background-color: rgba(105, 105, 105, 0.61);
+  font-weight: bold;
+}
+
+#submit {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+a {
+  color: rgb(255, 251, 0);
+}
+
+a:hover {
+  color: rgb(255, 153, 0);
+}
+
+footer {
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  margin-top: 60px;
+  margin-bottom: -60px;
+}
+

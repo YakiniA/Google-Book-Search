@@ -5,8 +5,10 @@ import React from "react";
 // All of the props passed to this component are spread onto the input element
 function Input(props) {
   return (
-    <div className="input-group input-group-lg">
-      <input className="form-control" type="text" {...props} />
+    <div className="row">
+        <div class="col s12 m6 l6 offset-l1">
+      <input className="validate" type="text" {...props} />
+      </div>
     </div>
   );
 }
