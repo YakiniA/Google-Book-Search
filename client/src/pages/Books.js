@@ -25,7 +25,7 @@ function Books() {
     const handleFormSubmit = event => {
       event.preventDefault();
       console.log("Search" +search);
-      API.getBooks(search)
+      API.getGoogleBooks(search)
         .then(res => {
           if (res.data.status === "error") {
             throw new Error(res.data);
