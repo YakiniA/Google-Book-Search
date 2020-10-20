@@ -4,7 +4,7 @@ import Jumbotron from "../components/Jumbotron";
 import { Container, Row, Col } from "../components/Grid";
 import Nav from "../components/Nav"
 import Button from "../components/Button"
-import BookList from "../components/BookList"
+import { BookList, BookListItem } from "../components/BookList"
 import API from "../utils/API";
 
 
@@ -113,14 +113,14 @@ function Books() {
               <h1 className="text-center">No Books to Display</h1>
             ) : (
               <BookList>
-                {books.map(recipe => {
+                {books.map(book => {
                   return (
-                    <RecipeListItem
-                      key={recipe.title}
-                      title={recipe.title}
-                      href={recipe.href}
-                      ingredients={recipe.ingredients}
-                      thumbnail={recipe.thumbnail}
+                    <BookListItem
+                      key={book.title}
+                      title={book.title}
+                      href={book.href}
+                      ingredients={book.ingredients}
+                      thumbnail={book.thumbnail}
                     />
                   );
                 })}

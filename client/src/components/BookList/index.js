@@ -1,6 +1,6 @@
 import React from "react";
-import Thumbnail from "..components//Thumbnail";
-import { Container, Row, Col } from "..components/Grid";
+import Thumbnail from "../Thumbnail";
+import { Container, Row, Col } from "../Grid";
 
 // Exporting both RecipeList and RecipeListItem from this file
 
