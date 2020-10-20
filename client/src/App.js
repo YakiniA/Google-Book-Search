@@ -9,7 +9,6 @@ function App() {
   return (
     <div>
       <Wrapper>
-        <Nav />
         <Books />
       </Wrapper>
       </div>
