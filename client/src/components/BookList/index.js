@@ -8,6 +8,21 @@ import "./style.css";
 
 // RecipeList renders a bootstrap list item
 
+// const handleSubmit = event => {
+//   event.preventDefault();
+//   console.log("Search" +search);
+//   API.saveBook(search)
+//     .then(res => {
+//       if (res.data.status === "error") {
+//         throw new Error(res.data);
+//       }
+      
+//      setBooks(res.data.items);
+//      console.log(res.data.items);
+   
+//     })
+//     .catch(err => setError({ error: err.message }));
+// };
 
 export function BookList({ children }) {
   return <ul className="list-group">{children}</ul>;
