@@ -3,9 +3,7 @@ import axios from "axios";
 export default {
    // Gets all books
   getGoogleBooks: function(search) {
-    return axios.get("https://www.googleapis.com/books/v1/volumes?q=" +search)
-      .then(results => console.log(results)
-      )},
+    return axios.get("https://www.googleapis.com/books/v1/volumes?q=" +search)},
 
       getBooks: function() {
         return axios.get("/api/books" );

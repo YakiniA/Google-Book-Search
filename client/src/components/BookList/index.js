@@ -11,23 +11,27 @@ export function BookList({ children }) {
 
 // RecipeListItem renders a bootstrap list item containing data from the recipe api call
 export function BookListItem({
-  thumbnail,
+  
   title,
-  ingredients,
-  href
+  author,
+  description,
+  image,
+  link
+
 }) {
   return (
     <li className="list-group-item">
       <Container>
         <Row>
           <Col size="xs-4 sm-2">
-            <Thumbnail src={thumbnail || "https://placehold.it/300x300"} />
+            <Thumbnail src={image || "https://placehold.it/300x300"} />
           </Col>
           <Col size="xs-8 sm-9">
             <h3>{title}</h3>
-            <p>Ingredients: {ingredients}</p>
-            <a rel="noreferrer noopener" target="_blank" href={href}>
-              Go to recipe!
+            <p> {author}</p>
+            <p> {description}</p>
+            <a rel="noreferrer noopener" target="_blank" style={{color:"blue"}} href={link}>
+              Go to the books Page!
             </a>
           </Col>
         </Row>

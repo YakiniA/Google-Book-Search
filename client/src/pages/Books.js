@@ -33,9 +33,10 @@ function Books() {
           if (res.data.status === "error") {
             throw new Error(res.data);
           }
-          console.log(res);
-         setResults(res.data);
-         setBooks(res.data);
+          
+         setBooks(res.data.items);
+         console.log(res.data.items);
+       
         })
         .catch(err => setError({ error: err.message }));
     };
@@ -113,14 +114,17 @@ function Books() {
               <h1 className="text-center">No Books to Display</h1>
             ) : (
               <BookList>
-                {books.map(book => {
+                {books.map(singleBook => {
+                  // console.log(singleBook);
                   return (
                     <BookListItem
-                      key={book.title}
-                      title={book.title}
-                      href={book.href}
-                      ingredients={book.ingredients}
-                      thumbnail={book.thumbnail}
+                      key={singleBook.volumeInfo.title}
+                      title={singleBook.volumeInfo.title}
+                      author={singleBook.volumeInfo.authors}
+                      description = {singleBook.volumeInfo.description}
+                      image={singleBook.volumeInfo.imageLinks.thumbnail}
+                      link={singleBook.volumeInfo.infoLink}
+                     
                     />
                   );
                 })}
