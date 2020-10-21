@@ -1,10 +1,14 @@
 import React from "react";
 import Thumbnail from "../Thumbnail";
+import Button from "../Button"
 import { Container, Row, Col } from "../Grid";
+import "./style.css";
 
 // Exporting both RecipeList and RecipeListItem from this file
 
 // RecipeList renders a bootstrap list item
+
+
 export function BookList({ children }) {
   return <ul className="list-group">{children}</ul>;
 }
@@ -27,12 +31,21 @@ export function BookListItem({
             <Thumbnail src={image || "https://placehold.it/300x300"} />
           </Col>
           <Col size="xs-8 sm-9">
+            <div style={{float:"right"}}>
+                  <a href={link} class="btn btn-sucess btn-lg active mr-3" role="button" aria-pressed="true">View</a>
+
+                    <Button
+                      onClick={link}
+                      type="success"
+                      className="input-lg"
+                    >
+                        Save
+                    </Button>
+            </div>
             <h3>{title}</h3>
             <p> {author}</p>
             <p> {description}</p>
-            <a rel="noreferrer noopener" target="_blank" style={{color:"blue"}} href={link}>
-              Go to the books Page!
-            </a>
+             
           </Col>
         </Row>
       </Container>
