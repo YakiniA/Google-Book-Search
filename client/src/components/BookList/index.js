@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect, useRef }  from "react";
 import Thumbnail from "../Thumbnail";
-import Button from "../Button"
+import Button from "../Button";
+import API from "../../utils/API";
 import { Container, Row, Col } from "../Grid";
 import "./style.css";
 
@@ -25,6 +26,9 @@ import "./style.css";
 // };
 
 export function BookList({ children }) {
+
+
+
   return <ul className="list-group">{children}</ul>;
 }
 
@@ -36,8 +40,13 @@ export function BookListItem({
   description,
   image,
   link
+ 
+}) 
 
-}) {
+
+{
+  const [inputValue, setInputValue] = useState([]);
+
   return (
     <li className="list-group-item">
       <Container>
@@ -50,7 +59,12 @@ export function BookListItem({
                   <a href={link} class="btn btn-sucess btn-lg active mr-3" role="button" aria-pressed="true">View</a>
 
                     <Button
-                      onClick={link}
+                     onClick={(e) => {
+                       console.log(e.target.value)
+                      setInputValue(e.target.value)
+                      API.saveBook(inputValue)
+                     }
+                     }
                       type="success"
                       className="input-lg"
                     >

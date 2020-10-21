@@ -1,6 +1,11 @@
 .navbar-nav{
     display:flex;
     flex-direction: row;    
+    /* margin-bottom: 8px;
+    padding: 5%; */
+}
+
+.navbar{
+    padding: 5% ;
     margin-bottom: 8px;
-   padding: 5%;
 }
