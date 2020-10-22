@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Input, TextArea, FormBtn } from "../components/Form";
+import React, { useState, useRef } from "react";
+import { Input } from "../components/Form";
 import Jumbotron from "../components/Jumbotron";
 import { Container, Row, Col } from "../components/Grid";
 import Nav from "../components/Nav"
 import Button from "../components/Button"
-import { BookList, BookListItem } from "../components/BookList"
+import BookList from "../components/BookList"
 import API from "../utils/API";
 
 
@@ -12,14 +12,10 @@ function Books() {
   // Initialize books as an empty array
     const [books, setBooks] = useState([]);
     const [search, setSearch] = useState([]);
-    const [results , setResults] = useState([]);
-    const [error , setError] = useState([]);
+    // const [results , setResults] = useState([]);
+    const [setError] = useState([]);
     const searchTitle = useRef();
     
-    useEffect(() => {
-      loadBooks();
-    }, []);
-
    const handleInputChange = event => {
      const { value } = event.target;
      setSearch(value);
@@ -40,39 +36,7 @@ function Books() {
         })
         .catch(err => setError({ error: err.message }));
     };
-
-    function loadBooks() {
-      // Add code here to get all books from the database and store them using setBooks
-   
-      API.getBooks().then((response) => {
-        setBooks(response.data);
-      });
-  
-    }
-
-    function deleteBooks(id) {
-      // Add code here to get all books from the database and store them using setBooks
-   
-      API.deleteBook(id).then((response) => {
-        loadBooks();
-      });
-  
-    }
-
-    function saveBook() {
-      // Add code here to get all books from the database and store them using setBooks
-    const bookData = {
-        //  title : titleRef.current.value,
-        //  author : authorRef.current.value,
-        //  synopsis : synopsisRef.current.value
-    }
-      API.saveBook(bookData).then((response) => {
-        setBooks(response.data);
-       alert()
-      });
-  
-    }
-
+    
     return (
       <div>
 
@@ -113,22 +77,8 @@ function Books() {
             {!books.length ? (
               <h1 className="text-center">No Books to Display</h1>
             ) : (
-              <BookList>
-                {books.map(singleBook => {
-                  // console.log(singleBook);
-                  return (
-                    <BookListItem
-                      key={singleBook.id}
-                      title={singleBook.volumeInfo.title}
-                      author={singleBook.volumeInfo.authors}
-                      description = {singleBook.volumeInfo.description}
-                      image={singleBook.volumeInfo.imageLinks.thumbnail}
-                      link={singleBook.volumeInfo.infoLink}
-                     
-                    />
-                  );
-                })}
-              </BookList>
+              <BookList books= {books} option="saveBook"/>
+
             )}
           </Col>
         </Row>
