@@ -63,7 +63,7 @@ function Books() {
                       type="success"
                       className="input-lg"
                     >
-                        Search
+                        Submit
                     </Button>
                   </Col>
                 </Row>

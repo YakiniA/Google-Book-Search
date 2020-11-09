@@ -8,19 +8,20 @@ import "./style.css";
 function BookList(props) {
 
   const [inputValue, setInputValue] = useState([]);
-  const [setError] = useState([]);
+  const [error, setError] = useState();
 
-  const saveBook = () => {
-    // console.log(inputValue);
-    API.saveBook(inputValue)
-    .then(res => {
-        if (res.data.status === "error") {
-          throw new Error(res.data);
-        }
-        setInputValue(res.data);
-      })
-      .catch(err => setError({ error: err.message }));;
-  };
+   const saveBook = (v) => {
+    console.log("particular book");
+    console.log(v);
+      API.saveBook(v)
+      .then(res => {
+          if (res.data.status === "error") {
+            throw new Error(res.data);
+          }
+          setInputValue(res.data);
+        })
+        .catch(err => setError(err.message));
+   };
   
   function deleteBooks(id) {
     // Add code here to get all books from the database and store them using setBooks
@@ -39,7 +40,12 @@ function BookList(props) {
     });
   }
 
-  
+  if(error){
+   return(
+   <div>
+     {error}
+   </div>)
+  }
   return (
     <ul className="list-group">
 
@@ -71,14 +77,15 @@ function BookList(props) {
                 image : singleBook.volumeInfo.imageLinks.thumbnail,
                 link : singleBook.volumeInfo.infoLink
               }
-              setInputValue(v)
-              {props.option === 'saveBook' ? saveBook() : deleteBooks(singleBook.id)}
-              
+               setInputValue(v)
+              // {props.option === 'saveBook' ? saveBook() : deleteBooks(singleBook.id)}
+               saveBook(v)
               }}
               type="success"
               className="input-lg"
             >
-              {props.option === 'saveBook' ? "Save" : "Delete"}
+              {/* {props.option === 'saveBook' ? "Save" : "Delete"} */}
+              Save
             </Button>
             </div>
           </Col>

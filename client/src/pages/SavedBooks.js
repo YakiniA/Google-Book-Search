@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import Jumbotron from "../components/Jumbotron";
 import { Container, Row, Col } from "../components/Grid";
 import Nav from "../components/Nav"
-import BookList from "../components/BookList"
+import BookList from "../components/BookList/index"
 import API from "../utils/API";
+import RetrieveSavedBooks from "../components/BookList/RetrieveSavedBooks"
 
 
 function SavedBooks() {
@@ -28,8 +29,8 @@ function SavedBooks() {
       <div>
 
       <Nav />
-      <Jumbotron />
-      <Container>
+      {/* <Jumbotron />
+      <Container> */}
  
         <Row>
           <Col size="xs-12">
@@ -37,12 +38,12 @@ function SavedBooks() {
             {!books.length ? (
               <h1 className="text-center">No Books to Display</h1>
             ) : (
-              <BookList books= {books} option="deleteBook"/>
+              <RetrieveSavedBooks books= {books} option="deleteBook"/>
 
             )}
           </Col>
         </Row>
-      </Container>
+      {/* </Container> */}
     </div>
      
     );

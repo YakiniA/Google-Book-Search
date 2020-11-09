@@ -1,5 +1,7 @@
 import React from "react";
 import "./style.css";
+import { Link } from "react-router-dom";
+
 function Nav() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -10,10 +12,36 @@ function Nav() {
     <div id="navbarNav">
       <ul className="navbar-nav">
         <li className="nav-item mr-3">
-          <a className="nav-link" href="/#">Search </a>
+        <Link
+             
+                style={{ color: "rgb(190, 147, 3)" }}
+                to="/search"
+                className={
+                  window.location.pathname === "/search"
+                    ? "nav-link active"
+                    : "nav-link"
+                }
+              >
+               
+                Search
+        </Link>
+          {/* <a className="nav-link" href="/#">Search </a> */}
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="/#">Saved</a>
+        <Link
+               
+                style={{ color: "rgb(190, 147, 3)" }}
+                to="/saved"
+                className={
+                  window.location.pathname === "/saved"
+                    ? "nav-link active"
+                    : "nav-link"
+                }
+              >
+              
+                Saved
+        </Link>
+          {/* <a className="nav-link" href="/#">Saved</a> */}
         </li>
        
       </ul>

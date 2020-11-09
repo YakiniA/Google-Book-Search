@@ -11,7 +11,6 @@ const booksController = require("../../controllers/booksController");
  router
    .route("/:id")
    .get(booksController.findAll)
-   .post(booksController.update)
    .delete(booksController.remove);
 
 module.exports = router;
